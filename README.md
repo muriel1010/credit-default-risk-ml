@@ -8,20 +8,20 @@ This project demonstrates how financial institutions use data to make safer lend
 
 ## 📚 Table of Contents
 
-- [🚀 Live Demo](#-live-demo)
-- [🧠 Why This Project Matters](#-why-this-project-matters)
-- [📈 Model Performance](#-model-performance-test-set)
-- [🔍 Key Modeling Decisions](#-key-modeling-decisions)
-  - [✔ Leakage Prevention](#-1-leakage-prevention)
-  - [✔ TrainValidationTest Strategy](#-2-trainvalidationtest-strategy)
-  - [✔ ML Pipeline Architecture](#-3-machine-learning-pipeline)
-- [🖥️ Streamlit App](#️-streamlit-app-interactive-scoring)
-- [📊 Business Summary](#-business-friendly-summary)
-- [🧰 Tech Stack](#-tech-stack)
-- [📂 Repository Structure](#-repository-structure)
-- [🏁 How to Run Locally](#-how-to-run-locally)
-- [👩‍💼 About the Author](#-about-the-author)
-- [❤️ Final Notes](#️-final-notes)
+- [ Live Demo](#-live-demo)
+- [ Why This Project Matters](#-why-this-project-matters)
+- [ Model Performance](#-model-performance-test-set)
+- [ Key Modeling Decisions](#-key-modeling-decisions)
+  - [ Leakage Prevention](#-1-leakage-prevention)
+  - [ TrainValidationTest Strategy](#-2-trainvalidationtest-strategy)
+  - [ ML Pipeline Architecture](#-3-machine-learning-pipeline)
+- [ Streamlit App](#️-streamlit-app-interactive-scoring)
+- [ Business Summary](#-business-friendly-summary)
+- [ Tech Stack](#-tech-stack)
+- [ Repository Structure](#-repository-structure)
+- [ How to Run Locally](#-how-to-run-locally)
+- [ About the Author](#-about-the-author)
+- [ Final Notes](#️-final-notes)
 
 ---
 
@@ -30,7 +30,7 @@ This project demonstrates how financial institutions use data to make safer lend
 
 ---
 
-## 🧠 Why This Project Matters
+##  Why This Project Matters
 
 Banks and lenders must determine **which applicants are likely to default**.  
 Even small improvements in risk modeling can save millions of dollars.
@@ -48,7 +48,7 @@ The model predicts:
 
 ---
 
-## 📈 Model Performance (Test Set)
+##  Model Performance (Test Set)
 
 | Metric | Score |
 |--------|--------|
@@ -121,7 +121,7 @@ Saved under `model_artifacts/`:
 
 ---
 
-# 🖥️ Streamlit App (Interactive Scoring)
+#  Streamlit App (Interactive Scoring)
 
 The deployed app allows users to:
 
@@ -166,7 +166,7 @@ It shows both **technical depth** and **business intuition**.
 
 ---
 
-# 📂 Repository Structure
+# Repository Structure
 
 credit-default-risk-ml/
 │
@@ -181,7 +181,7 @@ credit-default-risk-ml/
 
 ---
 
-# 🏁 How to Run Locally
+#  How to Run Locally
 
 ### 1. Clone the repository  
 ```bash
@@ -200,12 +200,12 @@ pip install -r requirements.txt
 bash
 Copy code
 streamlit run app.py
-👩‍💼 About the Author
+ About the Author
 Muriel Tema
 Data Analyst | Machine Learning | Financial Modeling
 Passionate about data-driven decision-making and credit risk analytics.
 
-❤️ Final Notes
+ Final Notes
 This project covers the entire machine learning lifecycle — from raw data → modeling → evaluation → deployment.
 
 It highlights:
