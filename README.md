@@ -65,8 +65,6 @@ Confusion Matrix:
 | **2055** | **3441** |
 
 
-yaml
-Copy code
 
 ### Interpretation  
 - Strong **ranking ability** between risky vs safe borrowers  
@@ -75,9 +73,9 @@ Copy code
 
 ---
 
-# 🔍 Key Modeling Decisions
+#  Key Modeling Decisions
 
-## ✔ 1. Leakage Prevention
+## 1. Leakage Prevention
 
 To avoid unrealistic accuracy, the following post-underwriting features were removed:
 
@@ -85,13 +83,13 @@ To avoid unrealistic accuracy, the following post-underwriting features were rem
 - `rate_of_interest`  
 - `Upfront_charges`
 
-These contain decisions made *after* risk evaluation → keeping them would artificially inflate performance.
+These contain decisions made *after* risk evaluation , keeping them would artificially inflate performance.
 
 Identifier-like leakage was also checked by identifying columns where unique values perfectly predicted the target.
 
 ---
 
-## ✔ 2. Train/Validation/Test Strategy
+##  2. Train/Validation/Test Strategy
 
 A rigorous, industry-grade data-splitting strategy:
 
@@ -104,7 +102,7 @@ A rigorous, industry-grade data-splitting strategy:
 
 ---
 
-## ✔ 3. Machine Learning Pipeline
+##  3. Machine Learning Pipeline
 
 ### **Preprocessing (via ColumnTransformer)**  
 - Numerical → Median imputation  
@@ -120,7 +118,6 @@ Saved under `model_artifacts/`:
 - `credit_risk_model_FINAL.joblib`  
 - `schema.json` → feature names, threshold, metadata
 
-This ensures that anyone can run predictions with identical preprocessing and logic.
 
 ---
 
@@ -181,9 +178,6 @@ credit-default-risk-ml/
 │ └── schema.json
 ├── requirements.txt
 └── README.md
-
-yaml
-Copy code
 
 ---
 
