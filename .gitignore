@@ -1,0 +1,15 @@
+# Python / env
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Streamlit local config
+.streamlit/
+
+# OS files
+.DS_Store
+Thumbs.db

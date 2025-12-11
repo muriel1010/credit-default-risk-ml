@@ -1,0 +1,22 @@
+{
+  "target": "Status",
+  "numeric_features": [
+    "year",
+    "loan_amount",
+    "term",
+    "property_value",
+    "income",
+    "Credit_Score",
+    "LTV",
+    "dtir1"
+  ],
+  "categorical_features": [
+    "Gender",
+    "business_or_commercial",
+    "lump_sum_payment",
+    "credit_type",
+    "age",
+    "Region"
+  ],
+  "threshold": 0.6433542966842651
+}
