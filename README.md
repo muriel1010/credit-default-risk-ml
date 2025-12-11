@@ -6,30 +6,49 @@ This project demonstrates how financial institutions use data to make safer lend
 
 ---
 
+## 📚 Table of Contents
+
+- [🚀 Live Demo](#-live-demo)
+- [🧠 Why This Project Matters](#-why-this-project-matters)
+- [📈 Model Performance](#-model-performance-test-set)
+- [🔍 Key Modeling Decisions](#-key-modeling-decisions)
+  - [✔ Leakage Prevention](#-1-leakage-prevention)
+  - [✔ TrainValidationTest Strategy](#-2-trainvalidationtest-strategy)
+  - [✔ ML Pipeline Architecture](#-3-machine-learning-pipeline)
+- [🖥️ Streamlit App](#️-streamlit-app-interactive-scoring)
+- [📊 Business Summary](#-business-friendly-summary)
+- [🧰 Tech Stack](#-tech-stack)
+- [📂 Repository Structure](#-repository-structure)
+- [🏁 How to Run Locally](#-how-to-run-locally)
+- [👩‍💼 About the Author](#-about-the-author)
+- [❤️ Final Notes](#️-final-notes)
+
+---
+
 ## 🚀 Live Demo  
-🔗 **Streamlit App:** *(Link will be added after deployment)*
+🔗 **Streamlit App:** *Link will be added after deployment*
 
 ---
 
 ## 🧠 Why This Project Matters
 
-Banks and lenders need to assess **which applicants are likely to default**.  
-Even a small improvement in prediction accuracy can save millions.
+Banks and lenders must determine **which applicants are likely to default**.  
+Even small improvements in risk modeling can save millions of dollars.
 
-This project shows how ML can:
+This project demonstrates how ML can:
 
 - Reduce loan default losses  
-- Improve credit decisioning  
+- Improve lending decisions  
 - Support automated underwriting  
 - Enable risk-based pricing  
 
 The model predicts:  
-**`Status = 1` → Default**  
-**`Status = 0` → Non-default**
+- **`Status = 1` → Default**  
+- **`Status = 0` → Non-default**
 
 ---
 
-# 📈 Model Performance (Test Set)
+## 📈 Model Performance (Test Set)
 
 | Metric | Score |
 |--------|--------|
@@ -37,10 +56,6 @@ The model predicts:
 | **PR-AUC** | **0.81** |
 | **Recall (default class)** | **0.63** |
 | **Accuracy** | **0.88** |
-
-### What this means:
-- **Strong ranking ability** → The model separates risky vs. safe applicants well.  
-- **Good recall on defaults** → Critical for risk teams; better to catch risky borrowers.  
 
 Confusion Matrix:
 
@@ -50,70 +65,73 @@ Confusion Matrix:
 yaml
 Copy code
 
+### Interpretation  
+- Strong **ranking ability** between risky vs safe borrowers  
+- High **recall** for defaults → essential for risk teams  
+- Balanced performance for imbalanced financial data  
+
 ---
 
 # 🔍 Key Modeling Decisions
 
-## ✔ 1. Leakage Prevention  
-To avoid unrealistic accuracy, I removed features that contain *post-underwriting* information:
+## ✔ 1. Leakage Prevention
+
+To avoid unrealistic accuracy, the following post-underwriting features were removed:
 
 - `Interest_rate_spread`  
 - `rate_of_interest`  
-- `Upfront_charges`  
+- `Upfront_charges`
 
-These features leak future decisions — removing them ensures **true predictive performance**.
+These contain decisions made *after* risk evaluation → keeping them would artificially inflate performance.
 
-Identifier-like leakage was also checked by detecting columns where unique values perfectly predicted the target.
+Identifier-like leakage was also checked by identifying columns where unique values perfectly predicted the target.
 
 ---
 
-## ✔ 2. Train/Validation/Test Strategy  
-A rigorous split ensures robustness:
+## ✔ 2. Train/Validation/Test Strategy
+
+A rigorous, industry-grade data-splitting strategy:
 
 - **70%** training  
 - **15%** validation  
 - **15%** test  
 - Stratified by target distribution  
-- Group-aware splitting used when `ID` column existed  
-- Threshold tuned to maximize **F1-score**, not accuracy  
+- Group-aware splitting when `ID` column existed  
+- Threshold tuned on validation set (maximize F1-score)  
 
 ---
 
-## ✔ 3. Machine Learning Pipeline  
+## ✔ 3. Machine Learning Pipeline
 
-**Preprocessing (ColumnTransformer):**
+### **Preprocessing (via ColumnTransformer)**  
+- Numerical → Median imputation  
+- Categorical → Most frequent imputation + OneHotEncoder  
 
-- Numerical  
-  - Median imputation  
-- Categorical  
-  - Most frequent imputation  
-  - OneHotEncoding  
-
-**Models Tested**
-
+### **Models tested**  
 - Logistic Regression (baseline)  
 - **XGBoost (selected model)**  
 
-**Production Export**
-
-Files saved in `model_artifacts/` include:
+### **Production Export**  
+Saved under `model_artifacts/`:
 
 - `credit_risk_model_FINAL.joblib`  
-- `schema.json` (feature names & threshold)
+- `schema.json` → feature names, threshold, metadata
+
+This ensures that anyone can run predictions with identical preprocessing and logic.
 
 ---
 
 # 🖥️ Streamlit App (Interactive Scoring)
 
-The deployed app allows anyone to:
+The deployed app allows users to:
 
-- Enter applicant + loan details  
-- Adjust income, LTV, DTI, credit score, region, age, etc.  
-- See the **probability of default**  
-- Get a **Low / Medium / High** risk label  
-- Watch the **risk progress bar** update in real-time  
+- Input applicant + loan details  
+- Adjust income, LTV, DTI, credit score, region, age  
+- Generate **default probability** using the trained ML model  
+- Display **Low / Medium / High Risk** categories  
+- Simulate underwriting decisions  
 
-This simulates how modern lenders implement ML-powered credit scoring.
+This mirrors how risk officers interact with real production scoring tools.
 
 ---
 
@@ -121,12 +139,12 @@ This simulates how modern lenders implement ML-powered credit scoring.
 
 This project demonstrates:
 
-- How raw loan data is cleaned and validated  
-- Identification and removal of information leaks  
-- Building a fair, robust, and interpretable credit scoring model  
-- Deploying the model in a real app used by analysts or loan officers  
+- Credit risk modeling following **best practices used in banking**  
+- Clear identification + removal of information leaks  
+- Building a fair, robust, transparent model  
+- Deploying it in a usable application for analysts or credit officers  
 
-This is **industry-grade** credit risk modeling.
+It shows both **technical depth** and **business intuition**.
 
 ---
 
@@ -141,7 +159,7 @@ This is **industry-grade** credit risk modeling.
 ### **Deployment**
 - Streamlit  
 - Joblib  
-- JSON schema for production inference  
+- JSON schema for inference  
 
 ### **Version Control**
 - Git & GitHub  
@@ -168,7 +186,7 @@ Copy code
 
 # 🏁 How to Run Locally
 
-### 1. Clone repo  
+### 1. Clone the repository  
 ```bash
 git clone https://github.com/muriel1010/credit-default-risk-ml.git
 cd credit-default-risk-ml
@@ -188,5 +206,29 @@ streamlit run app.py
 👩‍💼 About the Author
 Muriel Tema
 Data Analyst | Machine Learning | Financial Modeling
-Passionate about data-driven decision-making and risk analytics.
+Passionate about data-driven decision-making and credit risk analytics.
 
+❤️ Final Notes
+This project covers the entire machine learning lifecycle — from raw data → modeling → evaluation → deployment.
+
+It highlights:
+
+End-to-end ML engineering
+
+Responsible modeling (leakage prevention)
+
+Real-world credit scoring logic
+
+Strong communication and documentation
+
+Perfect for demonstrating industry-ready skills to recruiters and hiring managers.
+
+yaml
+Copy code
+
+---
+
+### ✔ This is the **final clean version**, fully integrated, with table of contents and correct anchors.  
+### ✔ You can paste it *exactly as-is* into your `README.md`, no edits required.
+
+If you'd like screen
