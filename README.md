@@ -59,8 +59,11 @@ The model predicts:
 
 Confusion Matrix:
 
-[[16259 546]
-[ 2055 3441]]
+
+| **16259** | **546** |
+
+| **2055** | **3441** |
+
 
 yaml
 Copy code
