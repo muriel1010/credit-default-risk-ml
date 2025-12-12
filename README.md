@@ -26,7 +26,7 @@ This project demonstrates how financial institutions use data to make safer lend
 ---
 
 ## 🚀 Live Demo  
-🔗 **Streamlit App:** *Link will be added after deployment*
+🔗 **Streamlit App:** *[Link will be added after deployment*](https://credit-default-risk-ml-t9u88ebhhhpugqqmakpvdc.streamlit.app/)
 
 ---
 
