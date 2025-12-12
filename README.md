@@ -1,231 +1,148 @@
 # 💳 Credit Default Risk Prediction  
-### *End-to-End Machine Learning Pipeline + Interactive Streamlit App*
 
-Predicting whether a loan applicant will default using a complete real-world machine learning workflow.  
-This project demonstrates how financial institutions use data to make safer lending decisions.
-
----
-
-## 📚 Table of Contents
-
-- [ Live Demo](#-live-demo)
-- [ Why This Project Matters](#-why-this-project-matters)
-- [ Model Performance](#-model-performance-test-set)
-- [ Key Modeling Decisions](#-key-modeling-decisions)
-  - [ Leakage Prevention](#-1-leakage-prevention)
-  - [ TrainValidationTest Strategy](#-2-trainvalidationtest-strategy)
-  - [ ML Pipeline Architecture](#-3-machine-learning-pipeline)
-- [ Streamlit App](#️-streamlit-app-interactive-scoring)
-- [ Business Summary](#-business-friendly-summary)
-- [ Tech Stack](#-tech-stack)
-- [ Repository Structure](#-repository-structure)
-- [ How to Run Locally](#-how-to-run-locally)
-- [ About the Author](#-about-the-author)
-- [ Final Notes](#️-final-notes)
+## Table of Contents
+- [Executive Summary](#executive-summary)
+- [Business Context](#business-context)
+- [Solution Overview](#solution-overview)
+- [Model Performance](#model-performance)
+- [Live Application](#live-application)
+- [Technical Approach](#technical-approach)
+- [System Architecture](#system-architecture)
+- [Repository Structure](#repository-structure)
+- [Future Enhancements](#future-enhancements)
+- [Author](#author)
 
 ---
 
-## 🚀 Live Demo  
-🔗 **Streamlit App:** *[Link to the project simulation*](https://credit-default-risk-ml-t9u88ebhhhpugqqmakpvdc.streamlit.app/)
+## Executive Summary
+This project delivers a complete machine learning solution for predicting the likelihood that a loan applicant will default.  
+It includes data preprocessing, leakage detection, feature engineering, model development, evaluation, and deployment through a real-time scoring application.
+
+The project demonstrates practical skills in data analytics, supervised learning, risk modeling, and ML engineering.
 
 ---
 
-##  Why This Project Matters
+## Business Context
+Financial institutions evaluate thousands of loan applications and must balance growth with risk management.  
+Accurate risk prediction enables organizations to:
 
-Banks and lenders must determine **which applicants are likely to default**.  
-Even small improvements in risk modeling can save millions of dollars.
+- Make faster and more consistent credit decisions  
+- Reduce financial losses from high-risk applicants  
+- Improve underwriting efficiency  
+- Support risk-based pricing strategies  
 
-This project demonstrates how ML can:
-
-- Reduce loan default losses  
-- Improve lending decisions  
-- Support automated underwriting  
-- Enable risk-based pricing  
-
-The model predicts:  
-- **`Status = 1` → Default**  
-- **`Status = 0` → Non-default**
+This project provides an automated scoring system that addresses these needs.
 
 ---
 
-##  Model Performance (Test Set)
+## Solution Overview
+The solution combines a production-ready machine learning pipeline with an interactive web application. It includes:
 
-| Metric | Score |
-|--------|--------|
-| **ROC-AUC** | **0.87** |
-| **PR-AUC** | **0.81** |
-| **Recall (default class)** | **0.63** |
-| **Accuracy** | **0.88** |
+- Data cleaning and validation  
+- Detection and removal of leakage-prone fields  
+- Preprocessing via a robust feature pipeline  
+- Training an XGBoost classifier to estimate default probability  
+- Evaluation using standard risk-modeling metrics  
+- Deployment through a Streamlit interface  
 
-Confusion Matrix:
-
-
-| **16259** | **546** |
-
-| **2055** | **3441** |
-
-
-
-### Interpretation  
-- Strong **ranking ability** between risky vs safe borrowers  
-- High **recall** for defaults → essential for risk teams  
-- Balanced performance for imbalanced financial data  
+Users can input loan and applicant information to receive a probability of default along with a risk classification.
 
 ---
 
-#  Key Modeling Decisions
+## Model Performance
+Performance on the test set:
 
-## 1. Leakage Prevention
+- ROC-AUC: 0.87  
+- PR-AUC: 0.81  
+- Recall (default class): 0.63  
+- Accuracy: 0.88  
 
-To avoid unrealistic accuracy, the following post-underwriting features were removed:
-
-- `Interest_rate_spread`  
-- `rate_of_interest`  
-- `Upfront_charges`
-
-These contain decisions made *after* risk evaluation , keeping them would artificially inflate performance.
-
-Identifier-like leakage was also checked by identifying columns where unique values perfectly predicted the target.
+These results indicate strong ability to identify high-risk applicants and support better decision-making.
 
 ---
 
-##  2. Train/Validation/Test Strategy
+## Live Application
+Real-time scoring interface:  
+[Insert Streamlit App Link Here]
 
-A rigorous, industry-grade data-splitting strategy:
-
-- **70%** training  
-- **15%** validation  
-- **15%** test  
-- Stratified by target distribution  
-- Group-aware splitting when `ID` column existed  
-- Threshold tuned on validation set (maximize F1-score)  
+*(Optional screenshot placeholder)*  
+![Application Screenshot](path/to/screenshot.png)
 
 ---
 
-##  3. Machine Learning Pipeline
+## Technical Approach
 
-### **Preprocessing (via ColumnTransformer)**  
-- Numerical → Median imputation  
-- Categorical → Most frequent imputation + OneHotEncoder  
+### Data Preparation
+- Missing value handling  
+- Leakage detection (removal of interest-based pricing columns)  
+- Deduplication  
+- Exploratory analysis of credit risk indicators  
 
-### **Models tested**  
-- Logistic Regression (baseline)  
-- **XGBoost (selected model)**  
+### Modeling
+- Stratified train/validation/test split  
+- Pipeline with imputation + one-hot encoding  
+- XGBoost classifier with imbalance handling  
+- F1-based threshold tuning  
+- Evaluation using ROC-AUC, PR curve, recall, accuracy, and confusion matrix  
 
-### **Production Export**  
-Saved under `model_artifacts/`:
-
-- `credit_risk_model_FINAL.joblib`  
-- `schema.json` → feature names, threshold, metadata
-
-
----
-
-#  Streamlit App (Interactive Scoring)
-
-The deployed app allows users to:
-
-- Input applicant + loan details  
-- Adjust income, LTV, DTI, credit score, region, age  
-- Generate **default probability** using the trained ML model  
-- Display **Low / Medium / High Risk** categories  
-- Simulate underwriting decisions  
-
-This mirrors how risk officers interact with real production scoring tools.
+### Deployment
+- Trained model exported with joblib  
+- Schema JSON used to validate inference inputs  
+- Streamlit application for real-time scoring  
 
 ---
 
-# 📊 Business-Friendly Summary
+## System Architecture
 
-This project demonstrates:
+User Input (Streamlit App)
+↓
+Preprocessing Pipeline (Imputation + Encoding)
+↓
+XGBoost Model (Serialized)
+↓
+Probability of Default
+↓
+Risk Classification
 
-- Credit risk modeling following **best practices used in banking**  
-- Clear identification + removal of information leaks  
-- Building a fair, robust, transparent model  
-- Deploying it in a usable application for analysts or credit officers  
+yaml
+Copy code
 
-It shows both **technical depth** and **business intuition**.
-
----
-
-# 🧰 Tech Stack
-
-### **Modeling**
-- Python  
-- Pandas, NumPy  
-- scikit-learn  
-- XGBoost  
-
-### **Deployment**
-- Streamlit  
-- Joblib  
-- JSON schema for inference  
-
-### **Version Control**
-- Git & GitHub  
+*(Optional architecture image placeholder)*  
+![Architecture Diagram](path/to/architecture.png)
 
 ---
 
-# Repository Structure
+## Repository Structure
 
 credit-default-risk-ml/
 │
-├── app.py → Streamlit app
-├── Credit_Risk.ipynb → Full EDA + modeling workflow
-├── Loan_Default_Data.csv → Dataset (optional for reproducibility)
+├── app.py # Streamlit application
 ├── model_artifacts/
 │ ├── credit_risk_model_FINAL.joblib
 │ └── schema.json
-├── requirements.txt
-└── README.md
-
----
-
-#  How to Run Locally
-
-### 1. Clone the repository  
-```bash
-git clone https://github.com/muriel1010/credit-default-risk-ml.git
-cd credit-default-risk-ml
-2. Create & activate virtual environment
-bash
-Copy code
-python -m venv .venv
-.venv\Scripts\activate   # Windows
-3. Install dependencies
-bash
-Copy code
-pip install -r requirements.txt
-4. Run Streamlit app
-bash
-Copy code
-streamlit run app.py
- About the Author
-Muriel Tema
-Data Analyst | Machine Learning | Financial Modeling
-Passionate about data-driven decision-making and credit risk analytics.
-
- Final Notes
-This project covers the entire machine learning lifecycle — from raw data → modeling → evaluation → deployment.
-
-It highlights:
-
-End-to-end ML engineering
-
-Responsible modeling (leakage prevention)
-
-Real-world credit scoring logic
-
-Strong communication and documentation
-
-Perfect for demonstrating industry-ready skills to recruiters and hiring managers.
+├── Credit_Risk.ipynb # EDA & modeling notebook
+├── requirements.txt # Project dependencies
+├── README.md # Project documentation
+└── Loan_Default_Data.csv # Optional dataset
 
 yaml
 Copy code
 
 ---
 
-### ✔ This is the **final clean version**, fully integrated, with table of contents and correct anchors.  
-### ✔ You can paste it *exactly as-is* into your `README.md`, no edits required.
+## Future Enhancements
+- Add SHAP or LIME to provide model interpretability  
+- Deploy an API version using FastAPI  
+- Implement monitoring for model drift and data quality  
+- Perform automated hyperparameter optimization  
+- Add batch scoring functionality for larger portfolios  
+- Build dashboards for ongoing risk analytics  
 
-If you'd like screen
+---
+
+## Author
+**Muriel Tema**  
+Data Analyst
+
+
+
