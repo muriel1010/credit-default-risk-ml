@@ -47,7 +47,7 @@ Users input applicant and loan characteristics (e.g., income, LTV, credit score,
 - **Risk classification** :(Low, Medium, High), based on an optimized decision threshold
 
   *Solution Prediction ScreenShot*  
-![Sample Prediction Screenshot](https://github.com/muriel1010/credit-default-risk-ml/blob/main/applicant-details.png)
+![Sample Prediction Screenshot](https://github.com/muriel1010/credit-default-risk-ml/blob/main/prediction.png)
 This enables lenders to understand both the *predicted likelihood* and the *interpreted risk level* instantly.
 ---
 
