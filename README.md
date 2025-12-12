@@ -23,7 +23,7 @@ This project provides a complete, production-ready machine learning solution tha
 - Removes variables that introduce target leakage  
 - Builds a preprocessing and modeling pipeline  
 - Trains an XGBoost classifier to estimate default probability  
-- Evaluates performance using industry-standard metrics  
+- Evaluates performance 
 - Deploys a real-time scoring tool through a Streamlit web interface  
 
 The result is a reliable system that assists lenders in making faster, more consistent, and data-driven credit decisions.
