@@ -45,8 +45,7 @@ Users input applicant and loan characteristics (e.g., income, LTV, credit score,
 
 - **Probability of default** : a numeric score between 0 and 1  
 - **Risk classification** :(Low, Medium, High), based on an optimized decision threshold  
-
-This enables lenders or analysts to understand both the *predicted likelihood* and the *interpreted risk level* instantly.
+This enables lenders to understand both the *predicted likelihood* and the *interpreted risk level* instantly.
 ---
 
 ## Model Performance
