@@ -34,8 +34,8 @@ The result is a reliable system that assists lenders in making faster, more cons
 Access the interactive real-time scoring tool:  
 [https://credit-default-risk-ml-t9u88ebhhhpugqqmakpvdc.streamlit.app/]
 
-*(Optional screenshot placeholder)*  
-![Application Screenshot](path/to/screenshot.png)
+*Solution ScreenShot*  
+![Application Screenshot](https://github.com/muriel1010/credit-default-risk-ml/blob/main/applicant-details.png)
 
 ---
 
@@ -44,7 +44,10 @@ Access the interactive real-time scoring tool:
 Users input applicant and loan characteristics (e.g., income, LTV, credit score, region), and the model returns:
 
 - **Probability of default** : a numeric score between 0 and 1  
-- **Risk classification** :(Low, Medium, High), based on an optimized decision threshold  
+- **Risk classification** :(Low, Medium, High), based on an optimized decision threshold
+
+  *Solution Prediction ScreenShot*  
+![Sample Prediction Screenshot](https://github.com/muriel1010/credit-default-risk-ml/blob/main/applicant-details.png)
 This enables lenders to understand both the *predicted likelihood* and the *interpreted risk level* instantly.
 ---
 
