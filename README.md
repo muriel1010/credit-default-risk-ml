@@ -1,4 +1,4 @@
-# 💳 Credit Default Risk Prediction  Machine Learning Solution
+#  Credit Default Risk Prediction  Machine Learning Solution
 
 ## Table of Contents
 - [Project Overview](#project-overview)
